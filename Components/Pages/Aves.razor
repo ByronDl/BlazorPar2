@@ -1,0 +1,73 @@
+﻿@page "/aves"
+@rendermode InteractiveServer
+
+@using RepasoBlazorPar2
+
+<h1>Registro de Aves</h1>
+
+<label>Nombre propio:</label>
+<input @bind="ave.NombrePropio" />
+<br />
+
+<label>Especie:</label>
+<input @bind="ave.Especie" />
+<br />
+
+<label>Tipo de alimentación:</label>
+<input @bind="ave.TipoAlimentacion" />
+<br />
+
+<label>Tiempo máximo de vida:</label>
+<input type="number" @bind="ave.TiempoMaximoVida" />
+<br />
+
+<label>¿Vuela?</label>
+<input type="checkbox" @bind="ave.Vuela" />
+<br />
+
+<label>Período de incubación:</label>
+<input type="number" @bind="ave.PeriodoIncubacion" />
+<br />
+<br />
+
+<button @onclick="GuardarAve">Guardar Ave</button>
+
+<hr />
+
+<h2>Listado de Aves</h2>
+
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Alimentación</th>
+        <th>Vida Máxima</th>
+        <th>Vuela</th>
+        <th>Incubación</th>
+    </tr>
+
+    @foreach (var item in aves)
+    {
+        <tr>
+            <td>@item.NombrePropio</td>
+            <td>@item.Especie</td>
+            <td>@item.TipoAlimentacion</td>
+            <td>@item.TiempoMaximoVida</td>
+            <td>@(item.Vuela ? "Sí" : "No")</td>
+            <td>@item.PeriodoIncubacion</td>
+        </tr>
+    }
+</table>
+
+@code {
+    Ave ave = new Ave();
+
+    List<Ave> aves = new List<Ave>();
+
+    void GuardarAve()
+    {
+        aves.Add(ave);
+
+        ave = new Ave();
+    }
+}

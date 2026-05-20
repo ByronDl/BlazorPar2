@@ -1,0 +1,78 @@
+﻿@page "/serpientes"
+@rendermode InteractiveServer
+
+@using RepasoBlazorPar2
+
+<h1>Registro de Serpientes</h1>
+
+<label>Nombre propio:</label>
+<input @bind="serpiente.NombrePropio" />
+<br />
+
+<label>Especie:</label>
+<input @bind="serpiente.Especie" />
+<br />
+
+<label>Tipo alimentación:</label>
+<input @bind="serpiente.TipoAlimentacion" />
+<br />
+
+<label>Tiempo máximo vida:</label>
+<input type="number" @bind="serpiente.TiempoMaximoVida" />
+<br />
+
+<label>¿Es venenosa?</label>
+<input type="checkbox" @bind="serpiente.EsVenenosa" />
+<br />
+
+<label>Longitud máxima:</label>
+<input type="number" @bind="serpiente.LongitudMaxima" />
+<br />
+<br />
+
+<button @onclick="GuardarSerpiente">
+    Guardar Serpiente
+</button>
+
+<hr />
+
+<h2>Listado de Serpientes</h2>
+
+<table border="1">
+
+    <tr>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Alimentación</th>
+        <th>Vida</th>
+        <th>Venenosa</th>
+        <th>Longitud</th>
+    </tr>
+
+    @foreach (var item in serpientes)
+    {
+        <tr>
+            <td>@item.NombrePropio</td>
+            <td>@item.Especie</td>
+            <td>@item.TipoAlimentacion</td>
+            <td>@item.TiempoMaximoVida</td>
+            <td>@(item.EsVenenosa ? "Sí" : "No")</td>
+            <td>@item.LongitudMaxima</td>
+        </tr>
+    }
+
+</table>
+
+@code {
+
+    Serpiente serpiente = new Serpiente();
+
+    List<Serpiente> serpientes = new List<Serpiente>();
+
+    void GuardarSerpiente()
+    {
+        serpientes.Add(serpiente);
+
+        serpiente = new Serpiente();
+    }
+}
