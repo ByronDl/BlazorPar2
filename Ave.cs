@@ -1,4 +1,6 @@
-﻿namespace RepasoBlazorPar2
+﻿using RepasoBlazorPar2;
+
+namespace RepasoBlazorPar2
 {
     public class Ave : Animal
     {
